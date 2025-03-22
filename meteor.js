@@ -1,14 +1,14 @@
 document.addEventListener('click', function(event) {
-    // 创建流星主体
+    // 创建流星（线条）
     const meteor = document.createElement('div');
     meteor.className = 'meteor';
 
     // 随机移动距离和动画时长
-    const dx = Math.random() * 600 - 300; // 增加移动距离，使流星轨迹更长
+    const dx = Math.random() * 600 - 300; // 移动距离
     const dy = Math.random() * 600 - 300;
     const duration = Math.random() * 1.5 + 1.5; // 动画时长 1.5s 到 3s
 
-    // 设置流星起始位置
+    // 设置流星起始位置（点击位置）
     meteor.style.left = event.clientX + 'px';
     meteor.style.top = event.clientY + 'px';
 
@@ -23,7 +23,7 @@ document.addEventListener('click', function(event) {
             50% {
                 transform: translate(${dx * 0.5}px, ${dy * 0.5}px) rotate(45deg);
                 opacity: 1;
-                filter: brightness(1.5); /* 中间更亮，模拟燃烧 */
+                filter: brightness(1.5); /* 中间最亮 */
             }
             100% {
                 transform: translate(${dx}px, ${dy}px) rotate(45deg);
@@ -46,36 +46,5 @@ document.addEventListener('click', function(event) {
     meteor.addEventListener('animationend', function() {
         meteor.remove();
         styleSheet.remove();
-    });
-
-    // 创建拖影（尾巴）效果
-    const tail = document.createElement('div');
-    tail.className = 'meteor-tail';
-    tail.style.left = event.clientX + 'px';
-    tail.style.top = event.clientY + 'px';
-
-    // 拖影动画（稍微延迟，模拟尾巴逐渐消失）
-    const tailKeyframes = `
-        @keyframes tail-${Date.now()} {
-            0% {
-                transform: translate(0, 0) rotate(45deg);
-                opacity: 0.8;
-            }
-            100% {
-                transform: translate(${dx * 0.8}px, ${dy * 0.8}px) rotate(45deg);
-                opacity: 0;
-            }
-        }
-    `;
-    const tailStyleSheet = document.createElement('style');
-    tailStyleSheet.innerHTML = tailKeyframes;
-    document.head.appendChild(tailStyleSheet);
-
-    tail.style.animation = `tail-${Date.now()} ${duration * 0.8}s linear forwards`;
-    document.body.appendChild(tail);
-
-    tail.addEventListener('animationend', function() {
-        tail.remove();
-        tailStyleSheet.remove();
     });
 });
