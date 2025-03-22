@@ -10,14 +10,12 @@
     }
     .meteor {
         position: absolute;
-        width: 120px; /* 流星线条长度 */
-        height: 2px; /* 流星线条粗细 */
-        background: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(0, 255, 255, 0.3)); /* 从白色到青色渐变 */
-        box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.9), /* 白色强光 */
-                   0 0 30px 10px rgba(0, 255, 255, 0.5); /* 青色光晕 */
+        width: 2px;
+        height: 2px;
+        background: linear-gradient(45deg, rgba(255,255,255,0), rgba(255,255,255,1));
+        box-shadow: 0 0 5px rgba(255,255,255,0.8);
         pointer-events: none;
         z-index: 1000;
-        transform-origin: 0 50%; /* 旋转中心设为线条左端，确保旋转时线条前端指向移动方向 */
     }
     </style>
     <script src="https://cdn.jsdelivr.net/gh/reese-lee1/start/meteor.js"></script>
