@@ -1,5 +1,6 @@
-document.addEventListener('contextmenu', function(event) {
-    event.preventDefault();
+document.addEventListener('click', function(event) {
+    // 移除 event.preventDefault()，因为左键点击不需要阻止默认行为
+    // event.preventDefault();
 
     const meteor = document.createElement('div');
     meteor.className = 'meteor';
