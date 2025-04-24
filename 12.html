@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>逐字显示页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a0a0a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-size: 2rem;
+        }
+        .text-container {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="text-container" id="text-container"></div>
+
+    <script>
+        const text = "Hello World！";
+        let i = 0;
+
+        function typeText() {
+            if (i < text.length) {
+                document.getElementById("text-container").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeText, 200); // 每个字符显示间隔为200ms
+            }
+        }
+
+        window.onload = typeText; // 页面加载完成后执行
+    </script>
+</body>
+</html>
