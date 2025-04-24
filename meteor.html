@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>逐字显示页面</title>
     <style>
+        /* 全屏覆盖，背景色为黑色 */
         body {
             font-family: Arial, sans-serif;
             background-color: #0a0a0a;
@@ -21,6 +22,7 @@
             display: inline-block;
             text-align: center;
         }
+        /* 加载层 */
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -48,22 +50,24 @@
         let i = 0;
         const loadingOverlay = document.getElementById("loading-overlay");
 
+        // 逐字显示文本的函数
         function typeText() {
             if (i < text.length) {
                 document.getElementById("text-container").innerHTML += text.charAt(i);
                 i++;
-                setTimeout(typeText, 200); // 每个字符显示间隔为200ms
+                setTimeout(typeText, 200); // 每个字符显示间隔200ms
             } else {
                 setTimeout(() => {
-                    loadingOverlay.style.opacity = 0; // 逐字显示完成后隐藏加载层
+                    // 文本显示完毕，开始隐藏加载层
+                    loadingOverlay.style.opacity = 0; // 逐渐消失
                     setTimeout(() => {
-                        loadingOverlay.style.display = 'none'; // 完全隐藏加载层
-                    }, 1000); // 等待动画结束
-                }, 500); // 延迟500ms再开始隐藏加载层
+                        loadingOverlay.style.display = 'none'; // 隐藏加载层
+                    }, 1000); // 等待动画结束后彻底隐藏
+                }, 500); // 延迟500ms后开始消失动画
             }
         }
 
-        window.onload = typeText; // 页面加载完成后执行
+        window.onload = typeText; // 页面加载完成后开始逐字显示
     </script>
 </body>
 </html>
